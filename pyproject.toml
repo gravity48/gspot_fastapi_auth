@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "gspot_fastapi_auth"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     { name = "gravity48", email = "gravity4849@gmail.com" },
 ]
