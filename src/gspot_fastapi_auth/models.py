@@ -63,4 +63,4 @@ class UserFactory:
         return self.users.get(role)
 
 
-__all__ = ['CustomerUser', 'AdminUser', 'DeveloperUser', 'UserFactory', 'Company']
+__all__ = ['CustomerUser', 'AdminUser', 'DeveloperUser', 'UserFactory', 'Company', 'BaseUser']

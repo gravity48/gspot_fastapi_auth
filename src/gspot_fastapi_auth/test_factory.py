@@ -3,8 +3,7 @@ from datetime import datetime
 import factory
 from faker import Faker
 
-from src.gspot_fastapi_auth import AdminUser, Company, CustomerUser, DeveloperUser
-from src.gspot_fastapi_auth.models import BaseUser
+from .models import AdminUser, BaseUser, Company, CustomerUser, DeveloperUser
 
 fake = Faker(['ru_Ru'])
 
@@ -57,3 +56,6 @@ class DeveloperUserFactory(BaseUserFactory):
     ).to_dict()
     groups = []
     user_permissions = []
+
+
+__all__ = ['AdminUserFactory', 'CustomerUserFactory', 'DeveloperUserFactory']
