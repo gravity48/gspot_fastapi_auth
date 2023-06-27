@@ -1,0 +1,17 @@
+redis
+httpx
+twine
+
+factory_boy
+Faker
+
+gspot-fastapi-auth
+
+setuptools
+black
+add-trailing-comma
+isort
+flake8
+
+fastapi
+uvicorn
