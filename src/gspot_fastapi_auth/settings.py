@@ -1,15 +1,16 @@
-import os
-
 from pydantic import BaseSettings
 
 
 class TokenSettings(BaseSettings):
-    host: str = os.getenv('REDIS_AUTH_HOST', '127.0.0.1')
-    port: int = int(os.getenv('REDIS_AUTH_PORT', 6379))
-    password: str = os.getenv('REDIS_AUTH_PASSWORD', None)
-    db: int = int(os.getenv('REDIS_AUTH_DB', 0))
-    prefix: str = os.getenv('REDIS_ACCESS_PREFIX', '')
-    storage: str = os.getenv('TOKEN_STORAGE', 'headers')
+    HOST: str = '127.0.0.1'
+    PORT: int = 6379
+    PASSWORD: str = None
+    DB: int = 0
+    ACCESS_PREFIX: str = ''
+    TOKEN_STORAGE: str = 'headers'
+
+    class Config:
+        env_prefix = 'REDIS_AUTH_'
 
 
 token_config = TokenSettings()

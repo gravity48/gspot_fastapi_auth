@@ -3,7 +3,7 @@ from .settings import token_config
 
 
 class TokenService(BaseRedis):
-    prefix = token_config.prefix
+    prefix = token_config.ACCESS_PREFIX
 
     async def get_token_data(self, token) -> dict:
         key = f'{self.prefix}:{token}' if self.prefix else token

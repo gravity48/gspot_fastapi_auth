@@ -5,7 +5,7 @@ from fastapi.security import HTTPBearer, OAuth2PasswordBearer
 from starlette.status import HTTP_401_UNAUTHORIZED
 
 from .models import BaseUser, UserFactory
-from .providers import RedisClient
+from .providers import RedisSingleton
 from .services import TokenService
 from .settings import token_config
 
@@ -13,16 +13,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 
 class UserRedisAuth(HTTPBearer):
-    def __init__(self, *args, **kwargs):
-        super(UserRedisAuth, self).__init__(*args, **kwargs)
-        self._redis_client = RedisClient(
-            token_config.host,
-            token_config.port,
-            token_config.db,
-            token_config.password,
-        )
-        self.token_service = TokenService(self._redis_client.session)
-
     @staticmethod
     def _get_token_from_headers(request: Request) -> str:
         token = request.headers.get('HTTP_AUTHORIZATION')
@@ -38,11 +28,12 @@ class UserRedisAuth(HTTPBearer):
         return token
 
     async def __call__(self, request: Request) -> Type[BaseUser]:
-        if token_config.storage == 'headers':
+        token_service = TokenService(RedisSingleton().session)
+        if token_config.TOKEN_STORAGE == 'headers':
             token = self._get_token_from_headers(request)
         else:
             token = self._get_token_from_cookies(request)
-        data = await self.token_service.get_token_data(token)
+        data = await token_service.get_token_data(token)
         if not data:
             raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail='Not authenticated')
         user_class = UserFactory().get_user(data.pop('role'))

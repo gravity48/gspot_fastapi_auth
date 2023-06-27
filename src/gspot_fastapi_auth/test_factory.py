@@ -3,7 +3,7 @@ from datetime import datetime
 import factory
 from faker import Faker
 
-from .models import AdminUser, BaseUser, Company, CustomerUser, DeveloperUser
+from .models import AdminUser, BaseUser, CustomerUser, DeveloperUser
 
 fake = Faker(['ru_Ru'])
 
@@ -44,16 +44,16 @@ class DeveloperUserFactory(BaseUserFactory):
         model = DeveloperUser
 
     is_superuser = True
-    company = Company(
-        created_by=fake.uuid4(),
-        title=fake.word(),
-        description=fake.text(),
-        email=fake.email(),
-        is_confirmed=True,
-        created_at=str(datetime.now()),
-        is_active=True,
-        is_banned=True,
-    ).to_dict()
+    company = {
+        'created_by': fake.uuid4(),
+        'title': fake.word(),
+        'description': fake.text(),
+        'email': fake.email(),
+        'is_confirmed': True,
+        'created_at': str(datetime.now()),
+        'is_active': True,
+        'is_banned': True,
+    }
     groups = []
     user_permissions = []
 

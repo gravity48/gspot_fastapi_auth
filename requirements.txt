@@ -35,7 +35,7 @@ factory-boy==3.2.1
     # via
     #   -r requirements.in
     #   gspot-fastapi-auth
-faker==18.11.1
+faker==18.11.2
     # via
     #   -r requirements.in
     #   factory-boy
@@ -46,7 +46,7 @@ fastapi==0.98.0
     #   gspot-fastapi-auth
 flake8==6.0.0
     # via -r requirements.in
-gspot-fastapi-auth==0.0.1
+gspot-fastapi-auth==0.0.4
     # via -r requirements.in
 h11==0.14.0
     # via

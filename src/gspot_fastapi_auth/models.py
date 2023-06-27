@@ -27,28 +27,11 @@ class AdminUser(BaseUser):
 
 
 @dataclass(frozen=True)
-class Company:
-    created_by: str
-    title: str
-    description: str
-    email: str
-    is_confirmed: bool
-    created_at: datetime
-    is_active: bool
-    is_banned: bool
-
-    to_dict = asdict
-
-
-@dataclass(frozen=True)
 class DeveloperUser(BaseUser):
     is_superuser: bool
     company: dict
     groups: List[str] = field(default_factory=list)
     user_permissions: List[str] = field(default_factory=list)
-
-    def __post_init__(self):
-        object.__setattr__(self, 'company', Company(**self.company))
 
 
 @dataclass(frozen=True)
@@ -63,4 +46,4 @@ class UserFactory:
         return self.users.get(role)
 
 
-__all__ = ['CustomerUser', 'AdminUser', 'DeveloperUser', 'UserFactory', 'Company', 'BaseUser']
+__all__ = ['CustomerUser', 'AdminUser', 'DeveloperUser', 'UserFactory', 'BaseUser']
