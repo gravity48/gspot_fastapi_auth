@@ -9,12 +9,12 @@ pip install gspot-fastapi-auth
 
 ## Define env variables
 
-- `REDIS_AUTH_ACCESS_PREFIX`
-- `REDIS_AUTH_DB`
-- `REDIS_AUTH_HOST`
-- `REDIS_AUTH_PORT`
-- `REDIS_AUTH_PASSWORD`
-- `REDIS_AUTH_TOKEN_STORAGE` - 'headers' or 'cookies'
+- `REDIS_AUTH_ACCESS_PREFIX` default ''
+- `REDIS_AUTH_DB` default 0
+- `REDIS_AUTH_HOST` default 127.0.0.1
+- `REDIS_AUTH_PORT` default 6379
+- `REDIS_AUTH_PASSWORD` default None
+- `REDIS_AUTH_TOKEN_STORAGE` default 'headers' should be 'cookies'
 
 ## Define startapp and shutdown logic
 
