@@ -13,12 +13,18 @@ class BaseUserFactory(factory.Factory):
         model = BaseUser
 
     user_id = factory.Faker('uuid4')
+    username = factory.Faker('word')
+    first_name = factory.Faker('word')
+    last_name = factory.Faker('word')
     email = factory.Faker('email')
     phone = factory.Faker('phone_number')
     avatar = ''
     country = factory.Faker('country')
+    is_active = True
+    is_banned = False
+    permissions = []
     created_at = str(datetime.now())
-    updated_at = str(datetime.now())
+    update_at = str(datetime.now())
 
 
 class AdminUserFactory(BaseUserFactory):

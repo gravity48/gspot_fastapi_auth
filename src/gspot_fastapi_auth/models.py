@@ -7,12 +7,18 @@ from uuid import UUID
 @dataclass(frozen=True)
 class BaseUser:
     user_id: UUID
+    username: str
+    first_name: str
+    last_name: str
     email: str
     phone: str
     avatar: str
-    country: str
+    country: dict
+    is_banned: bool
+    is_active: bool
+    permissions: List[str]
     created_at: datetime
-    updated_at: datetime
+    update_at: datetime
 
     to_dict = asdict
 
@@ -37,6 +43,7 @@ class DeveloperUser(BaseUser):
 @dataclass(frozen=True)
 class CustomerUser(BaseUser):
     birthday: datetime
+    friends: List[str] = field(default_factory=list)
 
 
 class UserFactory:
